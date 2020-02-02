@@ -1,3 +1,2 @@
 class Room < ApplicationRecord
-    
 end
