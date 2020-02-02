@@ -24,8 +24,6 @@ class UsersController < ApplicationController
           else
             redirect_to courses_path    #this is not the final redicrection, just test
           end
-
-
       else
           render :new
   end
@@ -37,7 +35,7 @@ end
 
 
 def update
-  # if can? :crud, @user
+  if can? :crud, @user
     if @user.update user_params
         flash[:notice] = 'User updated Successfully'
         if @user.is_admin == true || @user.is_manager == true
