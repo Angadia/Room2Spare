@@ -25,11 +25,8 @@ ActiveRecord::Base.connection.reset_pk_sequence!(:facilities)
 ActiveRecord::Base.connection.reset_pk_sequence!(:courses)
 ActiveRecord::Base.connection.reset_pk_sequence!(:users)
 
-
-
 PASSWORD = "supersecret"
 NUM_OF_USERS = 12
-
 
 super_user = User.create(
   first_name: "Jon",
@@ -47,7 +44,7 @@ NUM_OF_USERS.times do |num|
   u = User.create(
     first_name: first_name,
     last_name: last_name,
-    email: "email#{num}@example.com",
+    email: "email#{num+1}@example.com",
     contact_number: Faker::PhoneNumber.cell_phone,
     password: 'supersecret'
   )
@@ -67,31 +64,34 @@ puts Cowsay.say("Users email are #{(users.map do |user| user.email end).join(', 
 teachers = User.where({is_teacher: true})
 10.times.map do
   teacher = teachers.sample
-  Course.create(
-    title: Faker::Hacker.say_something_smart,
+  c = Course.create(
+    title: Faker::Educator.course_name,
     description: Faker::ChuckNorris.fact,
     capacity: 20,
     tuition: 100,
     status: "Pending Approval",
     user_id: teacher.id
   )
+  if !c.valid?
+    puts c.title, c.description, "Not saved."
+  end
 end
 
 puts Cowsay.say("Generated #{Course.count} courses using Faker.", :frogs)
 
-# students = User.where({is_student: true})
-# courses = Course.all
-# 10.times.map do
-#   student = students.sample
-#   course = courses.sample
-#   e = Enrollment.create(
-#     status: "Pending Approval",
-#     user_id: student.id,
-#     course_id: course.id
-#   )
-# end
+students = User.where({is_student: true})
+courses = Course.all
+20.times.map do
+  student = students.sample
+  course = courses.sample
+  e = Enrollment.create(
+    status: "Pending Approval",
+    user_id: student.id,
+    course_id: course.id
+  )
+end
 
-# puts Cowsay.say("Generated #{Enrollment.count} enrollments using Faker.", :sheep)
+puts Cowsay.say("Generated #{Enrollment.count} enrollments using Faker.", :sheep)
 
 NUM_OF_FACILITIES = 5
 
