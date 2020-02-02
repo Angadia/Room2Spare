@@ -24,11 +24,6 @@ class UsersController < ApplicationController
           else
             redirect_to courses_path    #this is not the final redicrection, just test
           end
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 21233d16f1b6e4bad165ea7b4a4d5c2d7ce431ea
       else
           render :new
   end
@@ -36,14 +31,11 @@ end
 
 
 def edit
-<<<<<<< HEAD
   if can? :crud, @user
     render :edit
   else
     redirect_to root_path flash[:alert] = "You dont have permission to update other user's info"
   end
-=======
->>>>>>> 21233d16f1b6e4bad165ea7b4a4d5c2d7ce431ea
 end
 
 

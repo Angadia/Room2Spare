@@ -4,8 +4,7 @@ class Facility < ApplicationRecord
     has_many :rooms, dependent: :destroy
 
 
-
-    #Validations
+    # Validations
     validates(:name, presence: true, uniqueness: true, case_sensitive: false)
     validates(:description, presence: true)
     validates(:address, presence: true)
