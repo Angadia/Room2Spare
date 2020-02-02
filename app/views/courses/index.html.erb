@@ -1,0 +1,15 @@
+<h1>All Questions</h1>
+<% @courses.each do |course| %>
+  <div>
+    <h3><%= link_to(course.title, course_path(course.id)) %></h3>
+    <p><%= course.description %></p>
+    <p>Status: <%= course.status %></p>
+    <p>Tuition: <%= course.tuition %></p>
+    <p>Capacity: <%= course.capacity %></p>
+    <small>
+      <p line-height="normal">
+        Posted <%= time_ago_in_words(course.created_at) %> ago
+      </p>
+    </small>
+  </div>
+<% end %>
