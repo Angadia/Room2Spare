@@ -8,7 +8,7 @@ class FacilitiesController < ApplicationController
 
     def create 
         @facility = Facility.new facility_params
-        @facility.user_id = 1
+        @facility.user_id = current_user
         if @facility.save
             redirect_to @facility
         else
