@@ -105,6 +105,7 @@ NUM_OF_FACILITIES.times do
     description: Faker::Company.catch_phrase,
     address: Faker::Address.street_address,
     city: Faker::Address.city,
+    contact_number: '555 5555 5555 555',
     parking: [true, false].sample,
     created_at: created_at,
     updated_at: created_at,
