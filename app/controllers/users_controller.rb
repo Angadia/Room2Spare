@@ -19,6 +19,7 @@ def user_params
     :first_name,
     :last_name,
     :email,
+    :contact_number,
     :is_manager,
     :is_teacher,
     :is_student,
