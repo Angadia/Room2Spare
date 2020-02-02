@@ -31,6 +31,11 @@ end
 
 
 def edit
+  if can? :crud, @user
+    render :edit
+  else
+    redirect_to root_path flash[:alert] = "You dont have permission to update other user's info"
+  end
 end
 
 
@@ -51,8 +56,10 @@ def update
   else
       flash[:alert] = "You dont have permission to update other user's info"
       redirect_to root_path
-end
-end
+ end
+end 
+
+# user type is not updating properly. it keeps the true value from sign up and it acumulates roles
 
 
 
@@ -74,8 +81,6 @@ end
 def find_user
   @user=User.find params[:id]
 end
-
-
 
 end
 
