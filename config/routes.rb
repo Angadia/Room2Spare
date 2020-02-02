@@ -10,4 +10,6 @@ Rails.application.routes.draw do
 
   resources :courses
 
+  get('/', {to: 'welcome#index', as: 'root'}) #created this welcome app just to test login and sign up
+
 end
