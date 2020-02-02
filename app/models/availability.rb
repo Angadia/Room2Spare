@@ -17,5 +17,4 @@ class Availability < ApplicationRecord
   def set_default_value_price
     self.price ||= 1
   end
-
 end
