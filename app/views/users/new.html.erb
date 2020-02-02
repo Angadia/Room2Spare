@@ -25,12 +25,12 @@
     <%= telephone_field :user, :contact_number %>
  </div>
 <div>
-    <%= radio_button_tag(:is_manager, "manager") %>
-    <%= label_tag(:is_manager, "Manager") %>
-    <%= radio_button_tag(:is_teacher, "teacher") %>
-    <%= label_tag(:is_teacher, "Teacher") %>
-    <%= radio_button_tag(:is_student, "student") %>
-    <%= label_tag(:is_student, "Student") %>
+    <%= radio_button_tag(:user_type, "manager") %>
+    <%= label_tag(:user_type, "Manager") %>
+    <%= radio_button_tag(:user_type, "teacher") %>
+    <%= label_tag(:user_type, "Teacher") %>
+    <%= radio_button_tag(:user_type, "student") %>
+    <%= label_tag(:user_type, "Student") %>
 </div>
 <div>
    <%= f.label          :password %>

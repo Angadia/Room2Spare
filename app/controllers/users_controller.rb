@@ -5,15 +5,15 @@ class UsersController < ApplicationController
   end
 
   def create
+    byebug
       @user = User.new user_params
-      if params[:is_manager] == "manager"
+      if params[:user_type] == "manager"
         @user.is_manager = true
-      elsif params[:is_teacher] == "teacher"
+      elsif params[:user_type] == "teacher"
         @user.is_teacher = true
-      elsif params[:is_student] == "student"
-        @student.is_student = true
+      elsif params[:user_type] == "student"
+        @user.is_student = true
       end
-      
       if @user.save
           session[:user_id] = @user.id
           redirect_to root_path  
