@@ -1,0 +1,6 @@
+<h1>Index Facility</h1>
+ <% @facilities.each do |facility|  %>
+  <ul>
+    <li><%= link_to facility.name, facility_path(facility) %></li>
+  </ul>
+<% end %>

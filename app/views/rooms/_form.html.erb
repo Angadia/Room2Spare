@@ -1,0 +1,36 @@
+<%#= form_with model: @rooms, local: true do |f| %>
+<%= form_for @room, url: {action: "create"}, local: true do |f| %>
+
+  <% if @room.errors.any? %>
+   <ul>
+    <% @room.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <%end  %>
+  </ul> 
+  <% end %>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :capicity %>
+    <%= f.text_field :capicity %>
+  </div>
+  <div>
+    <%= f.label :area %>
+    <%= f.text_field :area %>
+  </div>
+  <div>
+    <%= f.label :whiteboard %>
+    <%= f.check_box :whiteboard %>
+  </div>
+  <div>
+    <%= f.label :internet %>
+    <%= f.check_box :internet %>
+  </div>
+   <div>
+    <= f.label :image_url %>
+    <%= f.text_field :image_url %>
+  </div>
+  <%= f.submit %>
+<% end %>
