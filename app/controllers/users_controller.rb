@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
       @user = User.new user_params
       if params[:user_type] == "manager"
         @user.is_manager = true
@@ -16,13 +15,21 @@ class UsersController < ApplicationController
       end
       if @user.save
           session[:user_id] = @user.id
-          redirect_to root_path  
+          if @user.is_admin == true || @user.is_manager == true
+           redirect_to facilities_path   #this is not the final redicrection, just test, change home link in application erb
+          elsif @user.is_teacher
+            redirect_to courses_path
+          else
+            redirect_to courses_path    #this is not the final redicrection, just test
+          end
       else
           render :new
   end
 end
 
-private  #pensando em grab o valor do botao e isso preencher o is_manager, is_teacher, is_student
+
+
+private  
 def user_params
   params.require(:user).permit(
     :first_name,
