@@ -15,6 +15,6 @@ class Availability < ApplicationRecord
   private
 
   def set_default_value_price
-    self.price ||= 1
+    self.one_hour_rental_price ||= 1
   end
 end
