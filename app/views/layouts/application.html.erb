@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <nav>
+        <% if user_signed_in? %>
+        Hello <%= current_user.first_name %>,
+        <%= link_to('Home', root_path)  %>
+        <%= link_to "Log out", session_path, method: :delete,
+        data: {confirm: "Are you sure you want to log out?"} %>
+      <% else %>
+        <%= link_to "Login" , new_session_path %>
+        <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+      </nav>
     <%= yield %>
   </body>
 </html>
+
+
+
