@@ -6,6 +6,14 @@ class UsersController < ApplicationController
 
   def create
       @user = User.new user_params
+      if params[:is_manager] == "manager"
+        @user.is_manager = true
+      elsif params[:is_teacher] == "teacher"
+        @user.is_teacher = true
+      elsif params[:is_student] == "student"
+        @student.is_student = true
+      end
+      
       if @user.save
           session[:user_id] = @user.id
           redirect_to root_path  
