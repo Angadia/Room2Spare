@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    byebug
       @user = User.new user_params
       if params[:user_type] == "manager"
         @user.is_manager = true
