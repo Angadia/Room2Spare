@@ -100,7 +100,7 @@ managers = User.where({is_manager: true})
 NUM_OF_FACILITIES.times do
   created_at = Faker::Date.backward(days: 20)
   manager = managers.sample
-  f = Facility.create({
+  f = Facility.create(
     name: Faker::Company.name,
     description: Faker::Company.catch_phrase,
     address: Faker::Address.street_address,
@@ -110,7 +110,7 @@ NUM_OF_FACILITIES.times do
     created_at: created_at,
     updated_at: created_at,
     user_id: manager.id
-  })
+  )
   if f.valid?
     rand(0..10).times.each do
       r = Room.create(

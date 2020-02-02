@@ -29,6 +29,22 @@ class RoomsController < ApplicationController
         end
     end
 
+    def edit
+    end
+
+    def update
+        if @facility.update facility_params
+            redirect_to facility_path(@facility)
+        else
+            render :edit
+        end
+    end 
+
+    def destroy
+        @facility.destroy
+        redirect_to facilities_path
+    end 
+
     private
 
     def find_room
