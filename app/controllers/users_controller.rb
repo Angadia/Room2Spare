@@ -24,6 +24,8 @@ class UsersController < ApplicationController
           else
             redirect_to courses_path    #this is not the final redicrection, just test
           end
+
+
       else
           render :new
   end
@@ -35,11 +37,17 @@ end
 
 
 def update
-  if can? :crud, @user
+  # if can? :crud, @user
     if @user.update user_params
         flash[:notice] = 'User updated Successfully'
-        redirect_to root_path
-    else
+        if @user.is_admin == true || @user.is_manager == true
+          redirect_to facilities_path   #this is not the final redicrection, just test, change home link in application erb
+         elsif @user.is_teacher
+           redirect_to courses_path
+         else
+           redirect_to courses_path    #this is not the final redicrection, just test
+         end
+      else
         render :edit
     end
   else
