@@ -75,23 +75,6 @@ ActiveRecord::Schema.define(version: 2020_02_02_030018) do
     t.index ["user_id"], name: "index_facilities_on_user_id"
   end
 
-  create_table "feature_sets", force: :cascade do |t|
-    t.bigint "feature_id", null: false
-    t.bigint "room_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["feature_id"], name: "index_feature_sets_on_feature_id"
-    t.index ["room_id"], name: "index_feature_sets_on_room_id"
-  end
-
-  create_table "features", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_features_on_name", unique: true
-  end
-
   create_table "rooms", force: :cascade do |t|
     t.string "name"
     t.integer "capacity"
@@ -137,8 +120,6 @@ ActiveRecord::Schema.define(version: 2020_02_02_030018) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "facilities", "users"
-  add_foreign_key "feature_sets", "features"
-  add_foreign_key "feature_sets", "rooms"
   add_foreign_key "rooms", "facilities"
   add_foreign_key "time_slots", "bookings"
 end
