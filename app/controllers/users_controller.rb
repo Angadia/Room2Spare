@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :find_user, only: [:edit, :update]
+  before_action  :authenticate_user!, only: [:update]
 
   def new
       @user = User.new
@@ -28,6 +30,25 @@ class UsersController < ApplicationController
 end
 
 
+def edit
+end
+
+
+def update
+  if can? :crud, @user
+    if @user.update user_params
+        flash[:notice] = 'User updated Successfully'
+        redirect_to root_path
+    else
+        render :edit
+    end
+  else
+      flash[:alert] = "You dont have permission to update other user's info"
+      redirect_to root_path
+end
+end
+
+
 
 private  
 def user_params
@@ -43,6 +64,11 @@ def user_params
     :password_confirmation
   )
 end
+
+def find_user
+  @user=User.find params[:id]
+end
+
 
 
 end

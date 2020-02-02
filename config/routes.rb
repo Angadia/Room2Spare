@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :rooms, shallow: true
   end
 
-  resources :users, only: [:new, :create]
+  resources :users, only:   [:new, :create, :update]
   resource  :session, only: [:new, :create, :destroy]
 
   resources :courses
