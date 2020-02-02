@@ -10,6 +10,7 @@ class FacilitiesController < ApplicationController
         @facility = Facility.new facility_params
         @facility.user_id = current_user
         if @facility.save
+            flash[:notice] = 'Facility Created Successfully'
             redirect_to @facility
         else
             render :new

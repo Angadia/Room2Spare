@@ -11,6 +11,6 @@ class Facility < ApplicationRecord
     validates(:address, presence: true)
     validates(:city, presence: true)
     validates(:parking, presence: true)
-    validates(:contact_number, presence: true)
+    validates(:contact_number, presence: true, )
 
 end
