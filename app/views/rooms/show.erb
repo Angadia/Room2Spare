@@ -1,0 +1,79 @@
+<h1> <%= @room.name %> </h1>
+
+<% if @room.image_url != "" %>
+    <%= image_tag "#{@room.image_url}", alt: 'room-image', class: 'room-image' %>
+<% end %>
+
+<p> Capacity: <%= @room.capacity %> people</p>
+
+<p> Area: <%= @room.area %> </p>
+
+<% if @room.whiteboard == true %>
+    <p> Whiteboard: Yes </p>
+<% end%>
+
+<% if @room.internet == true %>
+    <p> Internet: Yes </p>
+<% end %>
+
+<p> Price per hour: $<%= @room.one_hour_rental_price %> </p>
+
+<% if can? :crud, @room %>
+  <%= link_to 'Delete', room_path(@room), method: :delete, data: { confirm: 'Are you sure that you want to delete this room?' } %>
+  <%= link_to "Edit", edit_room_path(@room) %>
+<% end %>
+<br>
+<%= month_calendar events: @availabilities do |date, availabilities| %>
+  <%= date %>
+
+  <% availabilities.each do |availability| %>
+    <div>
+      <%= availability.start_date %>
+      <%= availability.end_date %>
+      <%= availability.start_time %>
+      <%= availability.end_time %>
+    </div>
+  <% end %>
+<% end %>
+<hr />
+
+
+<% if can? :crud, @room %>
+    <%= form_with model: [@room, @availability], local: true do |f| %>
+        <% if @availability.errors.present? %>
+        <ul>
+            <% @availability.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <%end  %>
+        </ul> 
+        <% end %>
+        <div>
+            <%= f.label :start_date %>
+            <%= f.text_field :start_date %>
+        </div>
+        <div>
+            <%= f.label :end_date %>
+            <%= f.text_field :end_date %>
+        </div>
+        <div>
+            <%= f.label :start_time %>
+            <%= f.text_field :start_time %>
+        </div>
+        <div>
+            <%= f.label :end_time %>
+            <%= f.text_field :end_time %>
+        </div>
+
+        <%= f.submit %>
+    <% end %>
+<% end %>
+
+
+
+
+
+
+
+
+
+

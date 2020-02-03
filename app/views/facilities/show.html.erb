@@ -1,0 +1,37 @@
+<h1>Show Facility rooms </h1>
+
+<h1><%= @facility.name %></h1>
+<p>Description: <%= @facility.description %></p>
+<p>Address: <%= @facility.address %>  </p>
+<p>City:  <%= @facility.city %>  </p>
+<p>Contact:  <%= @facility.contact_number %>  </p>
+  <% if @facility.parking? %>  
+  <p>Parking: Yes</p>
+  <% else %>
+  <p>Parking: No</p>
+  <% end%>
+
+<% if can? :crud, @facility %>
+  <%= link_to 'Delete', facility_path(@facility), method: :delete, data: { confirm: 'Are you sure that you want to delete this facility?' } %>
+  <%= link_to "Edit", edit_facility_path(@facility) %> 
+
+  <%= link_to "Create a Room", new_facility_room_path(@facility) %>
+<% end %>
+
+<h2>Filter Rooms by Feature:</h2>
+
+<%= form_for "", url: @facility, role: "search", method: :get do %>
+    <p>
+        <%= text_field_tag :search, @search_term, placeholder: "Search..." %>
+        <%= submit_tag "Search", :one_hour_rental_price => nil %>
+    </p>
+<% end %>
+
+
+
+<h1>Rooms</h1>
+ <% @rooms.each do |room|  %>
+  <ul>
+    <li><%= link_to "#{room.name}", room_path(room) %></li>
+  </ul>
+<% end %>

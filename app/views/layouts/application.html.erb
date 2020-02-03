@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <header>
     <title>Room2Spare</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
-  </head>
+    <a href="#">
+    <%= image_tag 'chrome.png', class:'logo', alt:'logo'%>
+    </a>
+  </header>
 
   <body>
+  
+    <nav>
+
+      <% if user_signed_in? %>
+          Hello  <%=link_to(current_user.first_name, edit_user_path(current_user)) %>,
+          <%= link_to 'Home', root_path %>
+          <%= link_to "Log out", session_path, method: :delete,
+          data: {confirm: "Are you sure you want to log out?"} %>
+          <% if current_user.is_manager %>
+            <%= link_to "My Facilities", facilities_path %>
+          <% end %>
+          <% if current_user.is_teacher %>
+            <%= link_to "My Courses", courses_path %>
+            <%= link_to "My Bookings", courses_path %>
+          <% end %>
+          <% if current_user.is_student %>
+            <%= link_to "My Courses", courses_path %>
+          <% end %>
+      <% else %>
+        <h1><%= link_to "Login" , new_session_path %><h1>
+       |
+        <%= link_to "Sign Up", new_user_path %>
+      <% end %>
+      </nav>
+      <% flash.each do |type, message| %>
+      <div class="alert alert-info">
+        <%= message %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>
+
+
+

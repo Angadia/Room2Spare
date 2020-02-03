@@ -1,0 +1,38 @@
+<h1>My Courses</h1>
+<% @courses.each do |course| %>
+  <div>
+    <h3><%= link_to(course.title, course_path(course.id)) %></h3>
+    <p><%= course.description %></p>
+    <p>Status: <%= course.status %></p>
+    <p>Tuition: <%= course.tuition %></p>
+    <p>Capacity: <%= course.capacity %></p>
+    <small>
+      <p line-height="normal">
+        Posted <%= time_ago_in_words(course.created_at) %> ago
+      </p>
+    </small>
+  </div>
+<% end %>
+<% if current_user.is_student %>
+  <h1>Other Open Courses</h1>
+  <% @open_courses.each do |course| %>
+    <div>
+      <h3><%= link_to(course.title, course_path(course.id)) %></h3>
+      <p><%= course.description %></p>
+      <p>Status: <%= course.status %></p>
+      <p>Tuition: <%= course.tuition %></p>
+      <p>Capacity: <%= course.capacity %></p>
+      <small>
+        <p line-height="normal">
+          Posted <%= time_ago_in_words(course.created_at) %> ago
+        </p>
+      </small>
+    </div>
+  <% end %>
+<% end %>
+
+<% if current_user.is_teacher %>
+  <h3><%= link_to "Create New Course", new_course_path %></h3>
+  <h3><%= link_to "Find a Facility to Book a Classroom", facilities_path %></h3>
+<% end %>
+
