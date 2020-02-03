@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
     def index
         if params[:search]
             @search_term = params[:search]
-            @rooms = @rooms.search_by(@search_term)
+            @rooms = Room.search_by(@search_term)
         else
             @rooms= Room.order(created_at: :DESC)
         end
@@ -23,6 +23,7 @@ class RoomsController < ApplicationController
 
     def show
         @availability = Availability.new
+        @availabilities = Availability.all
     end
 
     def create

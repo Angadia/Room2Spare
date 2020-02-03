@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_02_030018) do
+ActiveRecord::Schema.define(version: 2020_02_03_090303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2020_02_02_030018) do
     t.date "end_date"
     t.time "start_time"
     t.time "end_time"
-    t.integer "one_hour_rental_price"
     t.bigint "room_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -75,26 +74,9 @@ ActiveRecord::Schema.define(version: 2020_02_02_030018) do
     t.index ["user_id"], name: "index_facilities_on_user_id"
   end
 
-  create_table "feature_sets", force: :cascade do |t|
-    t.bigint "feature_id", null: false
-    t.bigint "room_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["feature_id"], name: "index_feature_sets_on_feature_id"
-    t.index ["room_id"], name: "index_feature_sets_on_room_id"
-  end
-
-  create_table "features", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_features_on_name", unique: true
-  end
-
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    t.integer "capicity"
+    t.integer "capacity"
     t.string "area"
     t.string "image_url"
     t.boolean "whiteboard"
@@ -102,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_02_02_030018) do
     t.bigint "facility_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "one_hour_rental_price"
     t.index ["facility_id"], name: "index_rooms_on_facility_id"
   end
 
@@ -137,8 +120,6 @@ ActiveRecord::Schema.define(version: 2020_02_02_030018) do
   add_foreign_key "enrollments", "courses"
   add_foreign_key "enrollments", "users"
   add_foreign_key "facilities", "users"
-  add_foreign_key "feature_sets", "features"
-  add_foreign_key "feature_sets", "rooms"
   add_foreign_key "rooms", "facilities"
   add_foreign_key "time_slots", "bookings"
 end
