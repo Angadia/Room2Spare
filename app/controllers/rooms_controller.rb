@@ -40,18 +40,19 @@ class RoomsController < ApplicationController
     end
 
     def edit
+        render :edit
     end
 
     def update
-        if @facility.update facility_params
-            redirect_to facility_path(@facility)
+        if @room.update room_params
+            redirect_to room_path(@room)
         else
             render :edit
         end
     end 
 
     def destroy
-        @facility.destroy
+        @room.destroy
         redirect_to facilities_path
     end 
 

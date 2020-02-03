@@ -18,6 +18,11 @@
 
 <p> Price per hour: $<%= @room.one_hour_rental_price %> </p>
 
+<% if can? :crud, @room %>
+  <%= link_to 'Delete', room_path(@room), method: :delete, data: { confirm: 'Are you sure that you want to delete this room?' } %>
+  <%= link_to "Edit", edit_room_path(@room) %>
+<% end %>
+<br>
 <%= month_calendar events: @availabilities do |date, availabilities| %>
   <%= date %>
 
