@@ -1,3 +1,35 @@
 // Place all the styles related to the facilities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+h1{
+    text-align: center;
+}
+section {
+
+    padding: 1em;
+    border: solid lightcoral;
+    display: flex;
+    justify-content: center;
+    margin: 1em 2em ;
+    
+    
+}
+
+.radio{
+color: rgb(46, 88, 4);
+font-size: 70%;
+
+}
+.box{
+    display:flex;
+    justify-content: center;
+}
