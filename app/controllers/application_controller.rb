@@ -22,4 +22,16 @@ class ApplicationController < ActionController::Base
             redirect_to new_session_path
         end
     end
+
+    def user_type(user)
+        if user.is_teacher == true
+             "Teacher"
+        elsif user.is_manager == true
+             "Manager"
+        elsif user.is_student == true
+             "Student"
+        end
+    end
+    helper_method :user_type
+
 end
