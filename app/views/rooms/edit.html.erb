@@ -1,5 +1,6 @@
-<%#= form_with model: @rooms, local: true do |f| %>
-<%= form_for @room, url: {action: "create"}, local: true do |f| %>
+<h1>Edit Room</h1>
+
+<%= form_with model: @rooms, local: true do |f| %>
 
   <% if @room.errors.any? %>
    <ul>

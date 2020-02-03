@@ -11,4 +11,9 @@ class Facility < ApplicationRecord
     validates(:city, presence: true)
     validates(:contact_number, presence: true)
 
+    # Custom methods
+    def self.search_by(search_term)
+        where("LOWER(city) LIKE :search_term", search_term: "%#{search_term.downcase}%")
+    end
+
 end

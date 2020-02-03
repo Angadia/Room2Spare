@@ -1,7 +1,7 @@
 class FacilitiesController < ApplicationController
     before_action :authenticate_user!
     before_action :find_facility, only: [:show, :edit, :update, :destroy]
-    before_action :authorize!, except: [:index, :create, :new]
+    before_action :authorize!, except: [:index, :create, :show, :new]
 
     def new
         @facility = Facility.new
@@ -20,14 +20,28 @@ class FacilitiesController < ApplicationController
 
 
     def index 
-        
-        @facilities = Facility.order(created_at: :DESC)
+        if current_user.is_manager?
+            user = current_user
+            @facilities = user.facilities
+        elsif params[:search]
+            @search_term = params[:search]
+            @facilities = Facility.search_by(@search_term)
+        else
+            @facilities = Facility.order(created_at: :DESC)
+        end
         
     end 
 
     def show
-        @rooms = Room.new
-        @rooms = @facility.rooms.order(created_at: :desc)
+        if can? :crud, @facility
+        @room = Room.new
+        end
+        # if params[:search]
+        #     @search_term = params[:search]
+        #     @rooms = Room.search_by(@search_term)
+        # else
+            @rooms = @facility.rooms.order(created_at: :desc)
+        # end
     end
 
     def edit

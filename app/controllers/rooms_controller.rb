@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-    before_action :authenticate_user!, except: [:show, :index]
+    before_action :authenticate_user!, except: [:show, :index, :search]
     before_action :find_room, only: [:show, :edit, :update, :destroy]
     before_action :authorize!, only: [:edit, :update, :destroy]
 
@@ -9,11 +9,21 @@ class RoomsController < ApplicationController
     end 
 
     def index
-        @rooms= Room.order(created_at: :DESC)
+        if params[:search]
+            @search_term = params[:search]
+            @rooms = Room.search_by(@search_term)
+        else
+            @rooms= Room.order(created_at: :DESC)
+        end
+    end
+
+    def search
+
     end
 
     def show
         @availability = Availability.new
+        @availabilities = Availability.all
     end
 
     def create
@@ -30,20 +40,22 @@ class RoomsController < ApplicationController
     end
 
     def edit
+        render :edit
     end
 
     def update
-        if @facility.update facility_params
-            redirect_to facility_path(@facility)
+        if @room.update room_params
+            redirect_to room_path(@room)
         else
             render :edit
         end
     end 
 
     def destroy
-        @facility.destroy
+        @room.destroy
         redirect_to facilities_path
     end 
+
 
     private
 

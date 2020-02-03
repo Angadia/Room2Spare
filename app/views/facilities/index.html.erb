@@ -1,5 +1,19 @@
-<h1>My Facilities</h1>
- <% @facilities.each do |facility|  %>
+<% if current_user.is_manager %>
+  <h1>My Facilities</h1>
+<% else %>
+  <h1>Facilities</h1>
+<% end %>
+
+<h2>Filter by City:</h2>
+
+<%= form_for "", url: facilities_path, role: "search", method: :get do %>
+    <p>
+        <%= text_field_tag :search, @search_term, placeholder: "Search..." %>
+        <%= submit_tag "Search", :city => nil %>
+    </p>
+<% end %>
+
+<% @facilities.each do |facility|  %>
   <ul>
     <li><%= link_to facility.name, facility_path(facility) %></li>
   </ul>

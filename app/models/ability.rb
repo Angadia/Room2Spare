@@ -49,5 +49,10 @@ class Ability
     can :crud, Course do |course|
       course.user == user
     end
+
+    can :crud, Room do |room|
+      room.facility.user == user
+    end
+    
   end
 end
