@@ -2,13 +2,17 @@
 <h1>Course</h1>
 <h3><%= @course.title %></h3>
 <p><%= @course.description %></p>
-<p>Status: <%= course.status %></p>
-<p>Tuition: <%= course.tuition %></p>
-<p>Capacity: <%= course.capacity %></p>
+<p>Status: <%= @course.status %></p>
+<p>Tuition: <%= @course.tuition %></p>
+<p>Capacity: <%= @course.capacity %></p>
 <small>
   <p line-height="normal">
     Posted <%= time_ago_in_words(@course.created_at) %> ago<br>
   </p>
 </small>
-<%= link_to 'Edit', edit_course_path(@course.id)%>
-<%= link_to("Delete", course_path(@course), method: :delete, data:{confirm:'Delete Course?' }) %>
+<% if can? :edit, @course %>
+  <%= link_to 'Edit', edit_course_path(@course.id)%>
+<% end %>
+<% if can? :destroy, @course %>
+  <%= link_to("Delete", course_path(@course), method: :delete, data:{confirm:'Delete Course?' }) %>
+<% end %>
