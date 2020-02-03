@@ -1,5 +1,6 @@
 <h1>Sign In</h1>
- 
+ <div class="box">
+ <section>
 <%= form_with url: session_path, local: true do |f| %>
    <div>
        <%= f.label :email %>
@@ -14,3 +15,5 @@
    <%= f.submit "Sign In"%>
  
 <% end %>
+</section>
+</div>

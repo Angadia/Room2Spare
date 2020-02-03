@@ -7,13 +7,15 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
+    <a href="#">
     <%=  image_tag 'chrome.png', class:'logo', alt:'logo'%>
+    </a>
   </header>
 
   <body>
   
     <nav>
-    
+
         <% if user_signed_in? %>
         Hello <%= current_user.first_name %>,
         <%= link_to('Home', root_path)  %>

@@ -1,0 +1,32 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+h1{
+    text-align: center;
+}
+section {
+color: rgb(124, 124, 235);
+    padding: 1em;
+    border: solid rgb(19, 13, 22);
+    display: flex;
+    justify-content: center;
+    margin: 1em 2em ;
+    
+    
+}
+
+.radio{
+color: lawngreen;
+font-size: 70%;
+
+}
+.box{
+    display:flex;
+    justify-content: center;
+}
