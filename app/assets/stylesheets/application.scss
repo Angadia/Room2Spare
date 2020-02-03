@@ -13,9 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
-
- 
+  
 
 html {
     box-sizing: border-box;
@@ -59,3 +57,5 @@ nav {
 a{
     color: rgb(78, 78, 214);
 }
+
+@import 'bootstrap'
