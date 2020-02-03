@@ -1,0 +1,20 @@
+<h1> <%= @room.name %> </h1>
+
+<% if @room.image_url != "" %>
+    <%= image_tag "#{@room.image_url}", alt: 'room-image', class: 'room-image' %>
+<% end %>
+
+<p> Capacity: <%= @room.capacity %> </p>
+
+<p> Area: <%= @room.area %> </p>
+
+<% if @room.whiteboard === true %>
+    <p> Whiteboard available </p>
+<% end%>
+
+<% if @room.internet === true %>
+    <p> Internet available </p>
+<% end %>
+
+
+

@@ -1,15 +1,17 @@
 class FacilitiesController < ApplicationController
-
+    before_action :authenticate_user!
     before_action :find_facility, only: [:show, :edit, :update, :destroy]
+    before_action :authorize!, except: [:index, :create, :new]
 
     def new
         @facility = Facility.new
-    end 
+    end
 
     def create 
         @facility = Facility.new facility_params
-        @facility.user_id = 1
+        @facility.user = current_user
         if @facility.save
+            flash[:notice] = 'Facility Created Successfully'
             redirect_to @facility
         else
             render :new
@@ -18,7 +20,9 @@ class FacilitiesController < ApplicationController
 
 
     def index 
+        
         @facilities = Facility.order(created_at: :DESC)
+        
     end 
 
     def show
@@ -47,12 +51,15 @@ class FacilitiesController < ApplicationController
 
     def facility_params
         params.require(:facility).permit(:name, :description, :address, :city, :postal_code, :contact_number, :parking)
-      end
+    end
 
     def find_facility
         @facility = Facility.find params[:id]
     end
 
-   
+    def authorize!
+        redirect_to root_path, alert: "access denied" unless can? :crud, @facility
+    end
 
 end
+
