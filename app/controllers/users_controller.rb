@@ -61,8 +61,6 @@ def update
  end
 end 
 
-# user type is not updating properly. it keeps the true value from sign up and it acumulates roles
-
 
 
 private  
