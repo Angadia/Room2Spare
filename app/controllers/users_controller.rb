@@ -23,7 +23,8 @@ def create
       elsif @user.is_teacher
         redirect_to courses_path
       else
-        redirect_to courses_path    #this is not the final redicrection, just test
+        redirect_to courses_path   #waiting for enrollments path to make sure it works
+        #  redirect_to enrollments_path
       end
   else
       render :new
@@ -50,7 +51,8 @@ def update
          elsif @user.is_teacher
            redirect_to courses_path
          else
-           redirect_to courses_path    #this is not the final redicrection, just test
+           redirect_to courses_path   #waiting for enrollments path to make sure it works
+           #  redirect_to enrollments_path
          end
       else
         render :edit
