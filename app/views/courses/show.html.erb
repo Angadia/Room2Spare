@@ -16,3 +16,10 @@
 <% if can? :destroy, @course %>
   <%= link_to("Delete", course_path(@course), method: :delete, data:{confirm:'Delete Course?' }) %>
 <% end %>
+<% if current_user.is_student %>
+  <% if current_user.enrolled_courses&.include?(@course) && current_user.enrollments.where(course_id: @course.id).where(status: "Enrolled").count > 0 %>
+    <%= link_to("Drop", drop_course_path(@course), method: :post, data:{confirm:'Drop Course Enrollment?' }) %>
+  <% else %>
+    <%= link_to("Enroll", enroll_course_path(@course), method: :post, data:{confirm:'Enroll Course?' }) %>
+  <% end %>
+<% end %>
