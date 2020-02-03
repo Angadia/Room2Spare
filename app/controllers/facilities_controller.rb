@@ -8,7 +8,7 @@ class FacilitiesController < ApplicationController
 
     def create 
         @facility = Facility.new facility_params
-        @facility.user_id = current_user
+        @facility.user = current_user
         if @facility.save
             flash[:notice] = 'Facility Created Successfully'
             redirect_to @facility
