@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resource  :session, only: [:new, :create, :destroy]
 
   resources :courses
+  post 'courses/:id/drop', to: 'courses#drop', as: :drop_course
+  post 'courses/:id/enroll', to: 'courses#enroll', as: :enroll_course
 
   get('/', {to: 'welcome#index', as: 'root'}) #created this welcome app just to test login and sign up
 
