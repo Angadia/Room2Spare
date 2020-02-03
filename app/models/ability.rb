@@ -37,7 +37,10 @@ class Ability
       can :manage, :all
     end
 
-    can(:crud, User, id: user.id)
+ 
+    can :crud, User do |user_instance|
+      user_instance.id == user.id
+    end
 
     can :crud, Facility do |facility|
       facility.user == user
