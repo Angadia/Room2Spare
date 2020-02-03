@@ -1,5 +1,7 @@
-<h1>Please sign up</h1>
 
+<h1>Please sign up</h1>
+<div class="box">
+ <section>
 <%=form_with model: @user, local: true do |f| %>
 <% if @user.errors.any? %> 
   <p>
@@ -9,39 +11,41 @@
  
  
 <div>
-    <%= f.label      :first_name %>
-    <%= f.text_field :first_name %>
+    <%#= f.label      :first_name %>
+    <%= f.text_field :first_name, placeholder: "first_name" %>
 </div>
 <div>
-   <%= f.label      :last_name %>
-   <%= f.text_field :last_name %>
+   <%#= f.label      :last_name %>
+   <%= f.text_field :last_name, placeholder: "last_name" %>
 </div>
 <div>
-   <%= f.label       :email %>
-   <%= f.email_field :email %>
+   <%#= f.label       :email %>
+   <%= f.email_field :email, placeholder: "email" %>
 </div>
 <div>
-    <%= f.label         :contact_number %>
-    <%= telephone_field :user, :contact_number %>
+    <%#= f.label         :contact_number %>
+    <%= telephone_field :user, :contact_number, placeholder: "contact_number" %>
  </div>
-<div>
+<div class="radio">
     <%= radio_button_tag(:user_type, "manager") %>
     <%= label_tag(:user_type, "Manager") %>
     <%= radio_button_tag(:user_type, "teacher") %>
     <%= label_tag(:user_type, "Teacher") %>
     <%= radio_button_tag(:user_type, "student") %>
     <%= label_tag(:user_type, "Student") %>
+</div >
+<div>
+   <%#= f.label          :password %>
+   <%= f.password_field :password, placeholder: "password" %>
 </div>
 <div>
-   <%= f.label          :password %>
-   <%= f.password_field :password %>
-</div>
-<div>
-   <%= f.label          :password_confirmation %>
-   <%= f.password_field :password_confirmation %>
+   <%#= f.label          :password_confirmation %>
+   <%= f.password_field :password_confirmation, placeholder: "password_confirmation" %>
 </div>
 
  
 <%= f.submit %>
  
 <% end %>
+</section>
+</div>
