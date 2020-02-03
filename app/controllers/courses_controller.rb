@@ -1,5 +1,7 @@
 class CoursesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :find_course, only: [:edit,:update,:show, :destroy]
+  before_action :authorize!, only: [:edit, :update, :destroy, :show]
 
   def new
     @course = Course.new
@@ -7,6 +9,7 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new course_params
+    @course.user = current_user
     if @course.save
       flash[:notice] = 'Course Created Successfully'
       redirect_to @course
@@ -28,8 +31,12 @@ class CoursesController < ApplicationController
     end
   end
 
-  def index 
-    @courses = Course.order(created_at: :desc)
+  def index
+    if current_user.is_admin
+      @courses = Course.order(created_at: :desc)
+    else
+      @courses = Course.where(user_id: current_user.id).order(created_at: :desc)
+    end
   end
 
   def show
@@ -50,5 +57,11 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:title, :description, :status, :tuition, :capacity, :image_url)
+  end
+
+  def authorize! 
+    unless can?(:crud, @course)
+      redirect_to root_path, alert: 'Not Authorized' 
+    end
   end
 end
