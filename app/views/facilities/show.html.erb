@@ -21,16 +21,28 @@
 
 
   <% if @facility.parking? %>  
-  <p>Parking: Yes</p>
+    <p>Parking: Yes</p>
   <% else %>
-  <p>Parking: No</p>
+    <p>Parking: No</p>
   <% end%>
-<button type="button" class="btn btn-danger">  <%= link_to 'Delete', facility_path(@facility), method: :delete, data: { confirm: 'Are you sure that you want to delete this facility?' } %>
-</button>
-<%# if can? :edit, facility %>
- <button type="button" class="btn btn-success"> <%= link_to "Edit", edit_facility_path(@facility) %> </button>
-<button type="button" class="btn btn-primary"><%= link_to "Create a Room", new_facility_room_path(@facility) %></button>
-  
+
+<% if can? :crud, @facility %>
+  <button type="button" class="btn btn-danger">  <%= link_to 'Delete', facility_path(@facility), method: :delete, data: { confirm: 'Are you sure that you want to delete this facility?' } %>
+  </button>  
+        
+  <button type="button" class="btn btn-success"> <%= link_to "Edit", edit_facility_path(@facility) %> </button>
+
+  <button type="button" class="btn btn-primary"><%= link_to "Create a Room", new_facility_room_path(@facility) %></button> 
+<% end %>
+
+<h2>Filter Rooms by Feature:</h2>
+
+<%= form_for "", url: @facility, role: "search", method: :get do %>
+    <p>
+        <%= text_field_tag :search, @search_term, placeholder: "Search..." %>
+        <%= submit_tag "Search", :one_hour_rental_price => nil %>
+    </p>
+<% end %>
 
 
 

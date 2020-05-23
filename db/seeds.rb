@@ -62,30 +62,30 @@ puts Cowsay.say("Admin login with #{super_user.email} and password of '#{PASSWOR
 puts Cowsay.say("Users email are #{(users.map do |user| user.email end).join(', ')}", :kitty)
 
 teachers = User.where({is_teacher: true})
-10.times.map do
+20.times.map do
   teacher = teachers.sample
   c = Course.create(
     title: Faker::Educator.course_name,
     description: Faker::ChuckNorris.fact,
     capacity: 20,
     tuition: 100,
-    status: "Pending Approval",
+    status: "Open",
     user_id: teacher.id
   )
   if !c.valid?
-    puts c.title, c.description, "Not saved."
+    puts c.title, c.errors.full_messages.join(', ')
   end
 end
 
 puts Cowsay.say("Generated #{Course.count} courses using Faker.", :frogs)
 
 students = User.where({is_student: true})
-courses = Course.all
+courses = Course.where({status:"Open"})
 20.times.map do
   student = students.sample
   course = courses.sample
   e = Enrollment.create(
-    status: "Pending Approval",
+    status: "Enrolled",
     user_id: student.id,
     course_id: course.id
   )
@@ -119,6 +119,7 @@ NUM_OF_FACILITIES.times do
         area: Faker::Measurement.height,
         whiteboard: [true, false].sample,
         internet: [true, false].sample,
+        one_hour_rental_price: 300,
         created_at: created_at,
         updated_at: created_at,
         facility_id: f.id
@@ -129,7 +130,6 @@ NUM_OF_FACILITIES.times do
         end_date: Faker::Date.between(from: 31.days.from_now, to: 60.days.from_now),
         start_time: "09:00",
         end_time: "17:00",
-        one_hour_rental_price: 300,
         created_at: created_at,
         updated_at: created_at,
         room_id: r.id

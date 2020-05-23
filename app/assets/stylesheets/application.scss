@@ -13,9 +13,7 @@
  *= require_tree .
  *= require_self
  */
- 
-
- 
+  
 
 html {
     box-sizing: border-box;
@@ -95,3 +93,4 @@ a{
 }
 
 }
+@import 'bootstrap';
