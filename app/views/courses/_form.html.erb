@@ -1,3 +1,5 @@
+  <div class="box">
+ <section>
   <%= form_with(model: @course, local: true) do |form| %>
     <div>
       <% if @course.errors.present? %>
@@ -5,28 +7,30 @@
       <% end %>
     </div>
     <div>
-      <h3><%= form.label :title %></h3>
-      <%= form.text_field :title, value: @course.title %>
+      
+      <%= form.text_field :title, value: @course.title , placeholder: "title" %>
     </div>
     <div>
-      <h3><%= form.label :description %></h3>
-      <%= form.text_area :description, cols: 50, rows: 5, value: @course.description %>
+      
+      <%= form.text_area :description, cols: 50, rows: 5, value: @course.description, placeholder: "description"  %>
     </div>
     <div>
-      <h3><%= form.label :status %></h3>
-      <%= form.text_field :status, value: @course.status %>
+
+      <%= form.text_field :status, value: @course.status , placeholder: "status" %>
     </div>
     <div>
-      <h3><%= form.label :tuition %></h3>
-      <%= form.text_field :tuition, value: @course.tuition %>
+
+      <%= form.text_field :tuition, value: @course.tuition, placeholder: "tuition" %>
     </div>
     <div>
-      <h3><%= form.label :capacity %></h3>
-      <%= form.text_field :capacity, value: @course.capacity %>
+     
+      <%= form.text_field :capacity, value: @course.capacity, placeholder: "capacity" %>
     </div>    
     <div>
-      <h3><%= form.label :image_url %></h3>
-      <%= form.text_field :image_url, value: @course.image_url %>
+      <%= form.text_field :image_url, value: @course.image_url, placeholder: "image_url" %>
     </div>    
     <%= form.submit %>
   <% end %>
+
+  </section>
+</div>

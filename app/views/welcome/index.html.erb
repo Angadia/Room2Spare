@@ -5,35 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Frontend Dev Course</title>
-    
-    
 </head>
 <body>
-    <div class="container">
-  
-    <div class="container">
-      
-      
-    </div>
-
-    <div class="gray-container" >
-        <div class="container">
-            <ul>
-       
-                <li>
-                    <figure >
-                          <%= image_tag 'photo-1528238646472-f2366160b6c1.jpeg', alt: 'main', class:'general' %> 
-                    </figure>
-                </li>
-            </ul>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <%= image_tag 'ham.jpg', alt: 'main', class:'general' %> 
+            </div>
+            <div class="carousel-item">
+                <%= image_tag 'nathan.jpg', alt: 'main', class:'general' %> 
+            </div>
+            <div class="carousel-item">
+                <%= image_tag 'product.jpg', alt: 'main', class:'general' %> 
+            </div>
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-
-   
 
     <footer>
-        <div class="footer-container">
-            <div class="container">
+        <div class="footer-co">
+            <div class="co">
                 <a href="#">
                     <%=  image_tag 'chrome.png', class:'logo', alt:'logo'%>
                 </a>
@@ -45,6 +43,5 @@
             </div>
         </div>
     </footer>
-</div>
 </body>
 </html>
