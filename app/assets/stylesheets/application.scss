@@ -25,37 +25,72 @@ html {
     box-sizing: inherit;
 }
  .logo {
-    width: 60px;
-    padding: 1em;
+    width: 40px;
+    padding: 1px;
 }
 
-.hide-mobile {
-    display: none;
-}
+
+
 header {
+    background-image: url("1557071.jpg");
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    font-style: bold;
+    padding: 1.5em;
+
 }
 .container {
+    width: 100%;
+    height: auto;
     text-align: center;
     padding: .8em 1.2em;
     
 }
 
-nav {
-    position: inherit;
-    width: auto;
-    background:#3D444A;
-    height: 3em;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding-left: auto;
+
+/* .navbar  {
+    width: 100%;
+     font-size: 20px;
+    color: white;
+    display: block;
+    padding: 1em 2em;
     
-}
+} */
+
 
 a{
-    color: rgb(78, 78, 214);
+    color: rgb(0, 0, 10);
 }
 
+
+@media only screen and (min-width: 1024px)  {
+
+
+.logo {
+   width: 70px;
+   padding: 1em;
+}
+
+.hide-mobile {
+   display: none;
+}
+header {
+
+   display: flex;
+   /* justify-content: space-between; */
+}
+.container {
+    width: 100%;
+   text-align: center;
+   padding: 0;
+   
+}
+
+
+a{
+    
+   color: rgb(9, 9, 24);
+}
+
+}
 @import 'bootstrap';

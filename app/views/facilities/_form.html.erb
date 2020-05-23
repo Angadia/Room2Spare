@@ -1,3 +1,6 @@
+
+<div class="box">
+ <section>
 <%= form_with model: @facility, local: true do |f| %>
   <% if @facility.errors.any? %>
    <ul>
@@ -7,28 +10,28 @@
   </ul> 
   <% end %>
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+       <%= f.text_field :name, placeholder: "name" %>
   </div>
   <div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, placeholder: "description" %>
   </div>
   <div>
-    <%= f.label :address %>
-    <%= f.text_field:address %>
+   
+    <%= f.text_field:address, placeholder: "address" %>
   </div>
   <div>
-    <%= f.label :city %>
-    <%= f.text_field :city %>
+    <%= f.text_field :city, placeholder: "city" %>
   </div>
   <div>
-    <%= f.label :contact_number %>
-    <%= f.text_field :contact_number %>
+    
+    <%= f.text_field :contact_number, placeholder: "contact_number" %>
   </div>
   <div>
-    <%= f.label :parking%>
-    <%= f.check_box :parking %>
+  
+    <%= f.check_box :parking, placeholder: "parking" %>
   </div>
   <%= f.submit %>
 <% end %>
+
+</section>
+</div>

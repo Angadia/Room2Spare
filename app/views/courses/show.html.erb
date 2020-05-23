@@ -11,10 +11,12 @@
   </p>
 </small>
 <% if can? :edit, @course %>
-  <%= link_to 'Edit', edit_course_path(@course.id)%>
+  <button type="button" class="btn btn-success"><%= link_to 'Edit', edit_course_path(@course.id)%>
+  </button>
 <% end %>
 <% if can? :destroy, @course %>
-  <%= link_to("Delete", course_path(@course), method: :delete, data:{confirm:'Delete Course?' }) %>
+  <button type="button" class="btn btn-danger">  <%= link_to("Delete", course_path(@course), method: :delete, data:{confirm:'Delete Course?' }) %>
+  </button>
 <% end %>
 <% if current_user.is_student %>
   <% if current_user.enrolled_courses&.include?(@course) && current_user.enrollments.where(course_id: @course.id).where(status: "Enrolled").count > 0 %>
